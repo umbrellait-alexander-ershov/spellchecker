@@ -1,0 +1,1 @@
+export { handleCheckText } from "./handleCheckText";

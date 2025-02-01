@@ -1,0 +1,1 @@
+export { spellchecker } from "./spellchecker";
