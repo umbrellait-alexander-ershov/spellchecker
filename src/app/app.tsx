@@ -1,6 +1,7 @@
 import { type FC, type FormEvent, useState } from "react";
 
-import { handleCheckText } from "./utils";
+// sync / async spellchecker
+import { handleCheckText, asyncHandleCheckText } from "./utils";
 
 import styles from "./app.module.css";
 import type { SuggestionsTypes } from "./app.types";
@@ -9,14 +10,14 @@ import { locale } from "./app.locale";
 export const App: FC = () => {
   const [suggestions, setSuggestions] = useState<SuggestionsTypes>({});
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const form = event.currentTarget;
     const textarea = form.elements[0] as HTMLTextAreaElement;
 
     if (textarea.value.trim().length > 0) {
-      const newSuggestions = handleCheckText(textarea.value);
+      const newSuggestions = await asyncHandleCheckText(textarea.value);
       setSuggestions(newSuggestions);
     }
   };

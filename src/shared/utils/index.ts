@@ -1,1 +1,1 @@
-export { spellchecker } from "./spellchecker";
+export { spellchecker, initSpellchecker } from "./spellchecker";

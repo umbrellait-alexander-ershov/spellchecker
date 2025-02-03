@@ -1,7 +1,15 @@
-const path = require("node:path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import path from "node:path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
-module.exports = {
+import type { Configuration } from "webpack";
+import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
+
+const devServer: DevServerConfiguration = {
+  port: 9000,
+  open: true,
+};
+
+const config: Configuration = {
   mode: "development",
   entry: path.resolve(__dirname, "./src/index.tsx"),
   output: {
@@ -48,12 +56,11 @@ module.exports = {
       template: path.resolve(__dirname, "./public/index.html"),
     }),
   ],
-  devServer: {
-    port: 9000,
-    open: true,
-  },
+  devServer,
   devtool: "eval",
   experiments: {
     topLevelAwait: true,
   },
 };
+
+export default config;
